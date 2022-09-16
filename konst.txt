@@ -1,0 +1,70 @@
+npm init
+npm install --save-dev webpack webpack-cli
+
+"scripts": {
+    "build": "webpack --mode prodaction"
+
+npm run build - будут ошибки, это нормально
+
+создаем webpack.config.js в корне проекта
+пишем туда:
+module.export = {};
+
+создаем точку входа ./src/index.js
+
+npm run build - сборка прошла норм
+
+В webpack.config.js можно задать точку входа:
+const path = require('path'); //подключаем path за Глобал
+module.exports = {
+    entry: "./src/index.js"
+    output: {
+        path: path.resole( __dirname, result), // вместо каталога dist теперь result
+        filename: 'app.bundle.js' // и файл app.bundle.js
+    }
+}
+
+Загрузчик для txt или других по регулярному выражению
+Для других типов свои загрузчики.
+    module: {
+        rules: [
+            {
+                test: /\.txt$/,
+                loader: 'raw-loader'
+            }
+        ]
+    }
+npm install --save-dev raw-loader
+import result from "raw-loader!../data.txt"; //пример в index.js
+
+npm install --save-dev html-webpack-plugin
+const htmlWebpackPlugin = require('html-webpack-plugin'); //пример в index.js
+    module: {
+        rules: [
+            {
+                test: /\.txt$/,
+                loader: 'raw-loader'
+            }
+        ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './src/index.html'
+        }) 
+    ]
+
+npm install --save-dev css-loader
+import './style.css'; //в точке входа
+        rules: [
+            {
+                test: /\.txt$/,
+                loader: 'raw-loader'
+            }
+            {
+                test: /\.css$/,
+                loader: 'css-loader'
+            }
+затем:
+npm install --save-dev mini-css-extract-plugin
+const MiniCSSExtrackPluin = require('mini-css-extract-plugin');
